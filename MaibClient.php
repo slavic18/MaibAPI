@@ -14,7 +14,6 @@ use GuzzleHttp\Stream\Stream;
 
 class MaibClient extends GuzzleClient
 {
-
 	/**
 	 * @param ClientInterface      $client
 	 * @param DescriptionInterface $description
@@ -38,9 +37,9 @@ class MaibClient extends GuzzleClient
 					$result[$array2[0]] = isset($array2[1])? trim( $array2[1] ) : '';
 				}
 
-                $stream = Stream::factory(json_encode($result));
-                $cachedResponse->setBody($stream);
-                $e->intercept($cachedResponse);
+                		$stream = Stream::factory(json_encode($result));
+                		$cachedResponse->setBody($stream);
+                		$e->intercept($cachedResponse);
 			}
 		);
 	}
@@ -79,7 +78,7 @@ class MaibClient extends GuzzleClient
 	 */
 	public function registerSmsTransaction($amount, $currency, $clientIpAddr, $description = '', $language = 'ru')
 	{
-		$args = array(
+		$args = [
 			'command'  => 'v',
 			'amount' => $amount,
 			'msg_type' => 'SMS',
@@ -87,11 +86,10 @@ class MaibClient extends GuzzleClient
 			'client_ip_addr' => $clientIpAddr,
 			'description' => $description,
 			'language' => $language
-		);
+		];
 
 		return parent::registerSmsTransaction($args);
 	}
-
 
 	/**
 	 * Registering DMS authorization
@@ -107,15 +105,15 @@ class MaibClient extends GuzzleClient
 	 */
 	public function registerDmsAuthorization($amount, $currency, $clientIpAddr, $description = '', $language = 'ru')
 	{
-
-		$args = array(
+		$args = [
 			'command'  => 'a',
 			'amount' => $amount,
 			'currency' => $currency,
 			'client_ip_addr' => $clientIpAddr,
 			'description' => $description,
 			'language' => $language
-		);
+		];
+
 		return parent::registerDmsAuthorization($args);
 	}
 
@@ -135,9 +133,9 @@ class MaibClient extends GuzzleClient
 	 * CARD_NUMBER    - masked card number
 	 * error          - in case of an error
 	 */
-	public function makeDMSTrans($auth_id, $amount, $currency, $clientIpAddr, $description = '', $language = 'ru'){
-
-		$args = array(
+	public function makeDMSTrans($auth_id, $amount, $currency, $clientIpAddr, $description = '', $language = 'ru')
+	{
+		$args = [
 			'command'  => 't',
 			'auth_id' => $auth_id,
 			'amount' => $amount,
@@ -145,7 +143,8 @@ class MaibClient extends GuzzleClient
 			'client_ip_addr' => $clientIpAddr,
 			'description' => $description,
 			'language' => $language
-		);
+		];
+
 		return parent::makeDMSTrans($args);
 	}
 
@@ -190,12 +189,11 @@ class MaibClient extends GuzzleClient
 	 */
 	public function getTransactionResult($trans_id, $clientIpAddr)
 	{
-
-		$args = array(
+		$args = [
 			'command'  => 'c',
 			'trans_id' => $trans_id,
 			'client_ip_addr' => $clientIpAddr,
-		);
+		];
 
 		return parent::getTransactionResult($args);
 	}
@@ -215,7 +213,6 @@ class MaibClient extends GuzzleClient
 	 */
 	public function revertTransaction($trans_id, $amount)
 	{
-
 		$args = array(
 			'command'  => 'r',
 			'trans_id' => $trans_id,
@@ -238,11 +235,11 @@ class MaibClient extends GuzzleClient
 	 * FLD_087       - total amount of credit reversals (up to 16 digits), shown only if result_code begins with 5
 	 * FLD_088       - total amount of debit transactions (up to 16 digits), shown only if result_code begins with 5
 	 */
-	public function closeDay(){
-
-		$args = array(
+	public function closeDay()
+	{
+		$args = [
 			'command'  => 'b',
-		);
+		];
 
 		return parent::closeDay($args);
 	}
