@@ -121,7 +121,7 @@ class MaibClient extends GuzzleClient
 
 	/**
 	 * Executing a DMS transaction
-	 * @param  string $auth_id
+	 * @param  string $authId
 	 * @param  string $amount
 	 * @param  string $currency
 	 * @param  string $clientIpAddr
@@ -135,11 +135,11 @@ class MaibClient extends GuzzleClient
 	 * CARD_NUMBER    - masked card number
 	 * error          - in case of an error
 	 */
-	public function makeDMSTrans($auth_id, $amount, $currency, $clientIpAddr, $description = '', $language = 'ru'){
+	public function makeDMSTrans($authId, $amount, $currency, $clientIpAddr, $description = '', $language = 'ru'){
 
 		$args = array(
 			'command'  => 't',
-			'auth_id' => $auth_id,
+			'auth_id' => $authId,
 			'amount' => $amount,
 			'currency' => $currency,
 			'client_ip_addr' => $clientIpAddr,
@@ -151,7 +151,7 @@ class MaibClient extends GuzzleClient
 
 	/**
 	 * Transaction result
-	 * @param  string $trans_id
+	 * @param  string $transId
 	 * @param  string $clientIpAddr
 	 * @return array  RESULT, RESULT_PS, RESULT_CODE, 3DSECURE, RRN, APPROVAL_CODE, CARD_NUMBER, AAV, RECC_PMNT_ID, RECC_PMNT_EXPIRY, MRCH_TRANSACTION_ID
 	 * RESULT        	   - OK              - successfully completed transaction,
@@ -188,12 +188,12 @@ class MaibClient extends GuzzleClient
 	 * error                   - In case of an error
 	 * warning                 - In case of warning (reserved for future use).
 	 */
-	public function getTransactionResult($trans_id, $clientIpAddr)
+	public function getTransactionResult($transId, $clientIpAddr)
 	{
 
 		$args = array(
 			'command'  => 'c',
-			'trans_id' => $trans_id,
+			'trans_id' => $transId,
 			'client_ip_addr' => $clientIpAddr,
 		);
 
@@ -203,7 +203,7 @@ class MaibClient extends GuzzleClient
 
 	/**
 	 * Transaction reversal
-	 * @param  string $trans_id
+	 * @param  string $transId
 	 * @param  string $amount          reversal amount in fractional units (up to 12 characters). For DMS authorizations only full amount can be reversed, i.e., the reversal and authorization amounts have to match. In other cases partial reversal is also available.
 	 * @return array  RESULT, RESULT_CODE
 	 * RESULT         - OK              - successful reversal transaction
@@ -213,12 +213,12 @@ class MaibClient extends GuzzleClient
 	 * error          - In case of an error
 	 * warning        - In case of warning (reserved for future use).
 	 */
-	public function revertTransaction($trans_id, $amount)
+	public function revertTransaction($transId, $amount)
 	{
 
 		$args = array(
 			'command'  => 'r',
-			'trans_id' => $trans_id,
+			'trans_id' => $transId,
 			'amount' => $amount,
 		);
 
