@@ -4,7 +4,7 @@ Maib online payments php SDK
 ## Installing
 
 ```bash
-composer require fruitware/maib-api
+composer require indrivotech/maib-api
 ```
 
 ## Usage
