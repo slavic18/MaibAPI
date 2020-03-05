@@ -1,5 +1,5 @@
 {
-  "name": "fruitware/maib-api",
+  "name": "indrivotech/maib-api",
   "type": "library",
   "description": "",
   "keywords": ["maib", "payment"],
@@ -13,8 +13,7 @@
     }
   ],
   "require": {
-    "php": ">=5.4.0",
-    "guzzlehttp/guzzle": "~5.0",
+    "php": ">=7.0",
     "guzzlehttp/guzzle-services": "~0.5",
     "guzzlehttp/log-subscriber": "~1.0",
     "monolog/monolog": "~1.14"
